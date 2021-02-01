@@ -15,6 +15,8 @@ import NodeInfo from './NodeInfo';
 import TemplateModule from './TemplateModule';
 import Transfer from './Transfer';
 import Upgrade from './Upgrade';
+// 导入新创建的pallets模块
+import Kitties from './pallets/hellokitty/Kitties';
 
 function Main () {
   const [accountAddress, setAccountAddress] = useState(null);
@@ -74,6 +76,9 @@ function Main () {
           </Grid.Row>
           <Grid.Row>
             <TemplateModule accountPair={accountPair} />
+          </Grid.Row>
+          <Grid.Row>
+            <Kitties accountPair={accountPair} />
           </Grid.Row>
         </Grid>
       </Container>

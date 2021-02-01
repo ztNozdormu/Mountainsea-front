@@ -1,4 +1,10 @@
 {
-"Address": "MultiAddress",
-"LookupSource": "MultiAddress"
+    "Address": "AccountId",
+    "LookupSource": "AccountId",
+    "HelloKitty": "([u8; 16])",
+    "KittyIndex": "u32",
+    "LinkedItem": {
+        "prev": "Option<u32>",
+        "next": "Option<u32>"
+    }
 }
