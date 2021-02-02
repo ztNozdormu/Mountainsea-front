@@ -16,6 +16,8 @@ export default function Kitties (props) {
   const [kittyPrices, setKittyPrices] = useState([]);
   const [kitties, setKitties] = useState([]);
   const [status, setStatus] = useState('');
+  // 设置kitty费用
+  const [amount, setAmount] = useState(0);
 
   const fetchKittyCnt = () => {
     api.query.hellokittysModule.kittiesCount(cnt => {
@@ -23,7 +25,7 @@ export default function Kitties (props) {
       setKittyCnt(cntNum);
     });
   };
-
+  // 异步加载数据
   const fetchKitties = () => {
     let unsubDnas = null;
     let unsubOwners = null;
@@ -75,7 +77,8 @@ export default function Kitties (props) {
 
   return <Grid.Column width={16}>
     <h1>小毛孩</h1>
-    <KittyCards kitties={kitties} accountPair={accountPair} setStatus={setStatus}/>
+    <p>总毛孩个数为: {kittyCnt}</p>
+    <KittyCards kitties={kitties} kittyOwners={kittyOwners} kittyPrices={kittyPrices} accountPair={accountPair} setStatus={setStatus}/>
     <Form style={{ margin: '1em 0' }}>
       <Form.Field style={{ textAlign: 'center' }}>
         <TxButton
@@ -83,12 +86,16 @@ export default function Kitties (props) {
           attrs={{
             palletRpc: 'hellokittysModule',
             callable: 'create',
-            inputParams: [],
-            paramFields: []
+            inputParams: [amount],
+            paramFields: [true]
           }}
         />
       </Form.Field>
     </Form>
     <div style={{ overflowWrap: 'break-word' }}>{status}</div>
   </Grid.Column>;
+  // TODO 繁殖kitty
+  // TODO 设置kitty价格
+  // TODO 购买操作
+  // TODO 抵押操作
 }
